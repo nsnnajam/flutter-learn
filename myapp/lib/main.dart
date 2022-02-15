@@ -1,27 +1,29 @@
+// ignore_for_file: prefer_const_constructors
+
 import 'package:flutter/material.dart';
-import 'package:myapp/homepage.dart';
+import 'package:myapp/login.dart';
+import 'package:myapp/pages/homepage.dart';
 
-
-void main(){
-
-runApp(const Myapp());
-
-  
+void main() {
+  runApp(const Myapp());
 }
 
 class Myapp extends StatelessWidget {
-  const Myapp({ Key? key }) : super(key: key);
+  const Myapp({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return  const MaterialApp(
+    return MaterialApp(
       debugShowCheckedModeBanner: false,
-
-      home:Homepage()
-
-
-  
+      themeMode: ThemeMode.light,
+      theme: ThemeData(primarySwatch: Colors.deepPurple),
+      darkTheme: ThemeData(brightness: Brightness.dark),
+      initialRoute: "/login",
+      routes: {
+        "/": (context) => Loginpge(),
+        "/home": (context) => Homepage(),
+        "/login": (context) => Loginpge(),
+      },
     );
-    
   }
 }
