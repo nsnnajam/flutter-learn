@@ -13,16 +13,40 @@ class _LoginpgeState extends State<Loginpge> {
   @override
   Widget build(BuildContext context) {
     return Material(
-      child: Center(
-        child: Column(
-          children: [
-            Text(
-              "login",
-              style: TextStyle(fontSize: 20, color: Colors.blue),
-              textScaleFactor: 2,
+      color: Colors.white,
+      child: Column(
+        children: [
+          Image.asset("assets/login.png"),
+          Text(
+            "welcome",
+            style: TextStyle(
+                fontSize: 20, color: Colors.blue, fontWeight: FontWeight.bold),
+          ),
+          Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: Column(
+              children: [
+                TextFormField(
+                  decoration: InputDecoration(
+                    hintText: "enter user name",
+                    labelText: "user name",
+                  ),
+                ),
+                TextFormField(
+                  obscureText: true,
+                  decoration: InputDecoration(
+                    hintText: "enter password",
+                    labelText: "password",
+                  ),
+                ),
+                SizedBox(
+                  height: 20,
+                ),
+                ElevatedButton(onPressed: () {}, child: Text("login"))
+              ],
             ),
-          ],
-        ),
+          )
+        ],
       ),
     );
   }
