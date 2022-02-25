@@ -11,6 +11,9 @@ class Loginpge extends StatefulWidget {
 }
 
 class _LoginpgeState extends State<Loginpge> {
+  String name = "";
+  bool changebutton = false;
+
   @override
   Widget build(BuildContext context) {
     return Material(
@@ -24,7 +27,7 @@ class _LoginpgeState extends State<Loginpge> {
               height: 200,
             ),
             Text(
-              "welcome",
+              "welcome $name",
               style: TextStyle(
                   fontSize: 20,
                   color: Colors.blue,
@@ -36,13 +39,26 @@ class _LoginpgeState extends State<Loginpge> {
                 children: [
                   TextFormField(
                     decoration: InputDecoration(
+                      border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(20),
+                          borderSide: BorderSide(style: BorderStyle.solid)),
                       hintText: "enter user name",
                       labelText: "user name",
                     ),
+                    onChanged: (value) {
+                      name = value;
+                      setState(() {});
+                    },
+                  ),
+                  SizedBox(
+                    height: 20,
                   ),
                   TextFormField(
                     obscureText: true,
                     decoration: InputDecoration(
+                      border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(20),
+                          borderSide: BorderSide(style: BorderStyle.solid)),
                       hintText: "enter password",
                       labelText: "password",
                     ),
@@ -50,13 +66,45 @@ class _LoginpgeState extends State<Loginpge> {
                   SizedBox(
                     height: 20,
                   ),
-                  ElevatedButton(
-                    onPressed: () {
+
+                  // ElevatedButton(
+                  //   onPressed: () {
+                  //     Navigator.pushNamed(context, Myroutes.homeroute);
+                  //   },
+                  //   child: Text("login"),
+                  //   style: TextButton.styleFrom(minimumSize: Size(100, 40)),
+                  // )
+                  InkWell(
+                    onTap: () async {
+                      setState(() {
+                        changebutton = true;
+                      });
+                      await Future.delayed(Duration(seconds: 2));
                       Navigator.pushNamed(context, Myroutes.homeroute);
                     },
-                    child: Text("login"),
-                    style: TextButton.styleFrom(minimumSize: Size(100, 40)),
-                  )
+                    child: AnimatedContainer(
+                      duration: Duration(seconds: 2),
+                      height: 50,
+                      width: changebutton ? 50 : 150,
+                      alignment: Alignment.center,
+                      child: changebutton
+                          ? Icon(Icons.done, color: Colors.white)
+                          : Text(
+                              "login",
+                              style: TextStyle(
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 20),
+                            ),
+                      decoration: BoxDecoration(
+                          color: Colors.blue,
+                          shape: changebutton
+                              ? BoxShape.circle
+                              : BoxShape.rectangle
+                          // borderRadius: BorderRadius.circular(10),
+                          ),
+                    ),
+                  ),
                 ],
               ),
             )
